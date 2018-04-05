@@ -1,0 +1,59 @@
+2018-04-04 07:04:30pm Response Code '201': Username danny successfully registered to the database.
+2018-04-04 07:04:53pm Response Code '302': Username danny already registered.
+2018-04-04 07:04:05pm Response Code '404': Username not found.
+2018-04-04 07:04:01pm Response Code '404': Username not found.
+2018-04-04 07:04:10pm Response Code '404': Username not found.
+2018-04-04 07:04:29pm Response Code '404': Username not found.
+2018-04-04 07:04:52pm Response Code '404': Username not found.
+2018-04-04 08:04:30pm Response Code '404': Username not found.
+2018-04-04 08:04:37pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:39pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:39pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:40pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:49pm Response Code '404': Username not found.
+2018-04-04 08:04:51pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:08pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:10pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:12pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:16pm Response Code '404': Username not found.
+2018-04-04 08:04:57pm Response Code '404': Username not found.
+2018-04-04 08:04:00pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:37pm Response Code '401': Username danny, Unauthorized Access.
+2018-04-04 08:04:39pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:42pm Response Code '401': Username danny, Unauthorized Access.
+2018-04-04 08:04:59pm Response Code '401': Username danny, Unauthorized Access.
+2018-04-04 08:04:27pm Response Code 202: danny Authorized!
+2018-04-04 08:04:31pm Response Code '401': Username danny, Unauthorized Access.
+2018-04-04 08:04:34pm Response Code '401': Username danny, Unauthorized Access.
+2018-04-04 08:04:41pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:49pm Response Code 202: danny Authorized!
+2018-04-04 08:04:30pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:34pm Response Code 202: danny Authorized!
+2018-04-04 08:04:19pm Response Code '428': Empty fields requested.
+2018-04-04 08:04:23pm Response Code 202: danny Authorized!
+2018-04-04 08:04:54pm Response Code 202: danny Authorized!
+2018-04-04 08:04:05pm Response Code 202: danny Authorized!
+2018-04-04 08:04:26pm Response Code 202: danny Authorized!
+2018-04-04, 08:04:29pm: User'danny' has logged out
+2018-04-04, 08:04:35pm: User'' has logged out
+2018-04-04 08:04:42pm Response Code 202: danny Authorized!
+2018-04-04, 08:04:21pm: User'danny' has logged out
+2018-04-04 08:04:42pm Response Code 202: danny Authorized!
+2018-04-04, 08:04:43pm: User'danny' has logged out
+2018-04-04 08:04:45pm Response Code 202: danny Authorized!
+2018-04-04, 08:04:46pm: User'danny' has logged out
+2018-04-04 08:04:50pm Response Code 202: danny Authorized!
+2018-04-04, 08:04:38pm: User'danny' has logged out
+2018-04-04 08:04:52pm Response Code 202: danny Authorized!
+2018-04-04, 09:04:36pm: User'danny' has logged out
+2018-04-04 09:04:44pm Response Code 202: Username danny Authorized!
+2018-04-04 09:04:40pm Response Code 202: Username danny Authorized!
+2018-04-04, 09:04:40pm: Searching from the API...
+2018-04-04, 09:04:54pm: Searching from the API...
+2018-04-04 09:04:56pm Response Code 202: Username danny Authorized!
+2018-04-04 09:04:46pm Response Code '201': Username tariq successfully registered to the database.
+2018-04-04 09:04:00pm Response Code '302': Username tariq already registered.
+2018-04-04 09:04:13pm Response Code 202: Username tariq Authorized!
+2018-04-04, 09:04:13pm: Searching from the API...
+2018-04-04 09:04:55pm Response Code 202: Username danny Authorized!
+2018-04-04, 09:04:55pm: Searching from the API...

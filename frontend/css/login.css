@@ -1,0 +1,76 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	font-family: "Impact";
+}
+
+.background-image {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/hop-beer.jpeg');
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 1;
+
+}
+
+.login-box {
+	width: 600px;
+	height: 800px;
+	margin: 0 auto;
+	
+}
+
+.login-form{
+	background-color: #eeeeee;
+	padding: 0;
+	border: 2px solid #5cb85c;
+}
+
+#login-title {
+	color: #ffffff;
+	background-color: #5cb85c;
+	padding: 12px 28px;
+	text-align: center;
+	font-size: 60px;
+	margin: 0;
+
+}
+
+#login-subtitle {
+	color: #d9d9d9;
+	background-color: #5cb85c;
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 1px;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #5cb85c;
+	margin: 0;
+	text-decoration: line-through;
+
+}
+
+.form-group {
+	padding: 0px 30px;
+}
+
+label {
+	color: #5cb85c;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+.btn {
+	margin-top: 15px;
+	letter-spacing: 3px;
+}
+
+.error-div {
+	text-align: center;
+	margin: 10px;
+}
+
+.error {
+	color: #FF4C4C;
+	font-size: 24px;
+}
