@@ -35,7 +35,7 @@ if (isset($_POST['logout'])) {
 
 }
 
-if (isset($_SESSION['search'])){
+if (!empty($_SESSION['search'])){
 
 	$request = array();
 	$request['type'] = 'beerSearchAll';

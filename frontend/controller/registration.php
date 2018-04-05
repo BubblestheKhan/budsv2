@@ -8,11 +8,11 @@ $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 
 $date = date("Y-m-d", time());
 
-$username = 'tariq';//htmlspecialchars($_POST['username']);
-$password = 'password';//htmlspecialchars($_POST['password']);
-$confirmPassword = 'password';//htmlspecialchars($_POST['confirmPassword']);
-$firstname = 'tariq';//htmlspecialchars($_POST['firstname']);
-$lastname = 'khan';//htmlspecialchars($_POST['lastname']);
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
+$confirmPassword = htmlspecialchars($_POST['confirmPassword']);
+$firstname = htmlspecialchars($_POST['firstname']);
+$lastname = htmlspecialchars($_POST['lastname']);
 
 $missingError = '';
 $validateError = '';

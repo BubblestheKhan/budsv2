@@ -10,7 +10,7 @@ $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 $date = date("Y-m-d", time());
 
 
-$_SESSION['username'] = htmlspecialchars($_POST['username']);
+$username = htmlspecialchars($_POST['username']);
 $password =  htmlspecialchars($_POST['password']);
 $error = '';
 
@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
 
 	$request = array();
 	$request['type'] = "login";
-	$request['username'] = $_SESSION['username'];
+	$request['username'] = $username;
 	$request['password'] = $password;
 	$request['message'] = "'{$username}' requests to login '{$date}'";
 	
@@ -49,7 +49,11 @@ if (isset($_POST['register'])) {
 
 	} else {
 
-		header("Location: ../view/home.view.php");
+		$_SESSION['username'] = $response[0]['username'];
+		$_SESSION['firstname'] = $response[0]['firstname'];
+		$_SESSION['lastname'] = $response[0]['lastname'];
+
+		header("Location: ../controller/home.php");
 		exit();
 
 	}
