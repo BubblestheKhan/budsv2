@@ -10,7 +10,7 @@ $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 $date = date("Y-m-d", time());
 
 
-$username = htmlspecialchars($_POST['username']);
+$_SESSION['username'] = htmlspecialchars($_POST['username']);
 $password =  htmlspecialchars($_POST['password']);
 $error = '';
 
@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
 
 	$request = array();
 	$request['type'] = "login";
-	$request['username'] = $username;
+	$request['username'] = $_SESSION['username'];
 	$request['password'] = $password;
 	$request['message'] = "'{$username}' requests to login '{$date}'";
 	
@@ -48,12 +48,6 @@ if (isset($_POST['register'])) {
 		require('../view/login.view.php');
 
 	} else {
-
-		$_SESSION['username'] = $response[0]['username'];
-		$_SESSION['firstname'] = $response[0]['firstname'];
-		$_SESSION['lastname'] = $response[0]['lastname'];
-		$_SESSION['start'] = time();
-		$_SESSION['expire'] = $_SESSION['start'] + (120 * 60);
 
 		header("Location: ../view/home.view.php");
 		exit();
