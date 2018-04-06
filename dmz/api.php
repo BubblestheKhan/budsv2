@@ -19,8 +19,8 @@ function requestProcessor($request) {
 		case "beer_search_all":
 			return beer_search_all($request['beer_all']);
 
-		case "locationSearch":
-			return locationSearch($request['locationSearch']);
+		case "location_search":
+			return location_search($request['location_search']);
 
 		case "venue_search_id":
 			return venue_search_name($request['venue_id']);
@@ -33,7 +33,7 @@ function requestProcessor($request) {
 	return array("returnCode" => '0', 'message' => "Server received request and processed");
 }
 
-function locationSearch($apiLocationSearch) {
+function location_search($apiLocationSearch) {
 
 	$location_info = $apiLocationSearch;
 	$curl = curl_init();
@@ -88,6 +88,7 @@ function locationSearch($apiLocationSearch) {
 			}
 		}
 	}
+
 	var_dump($location_array);
 	return $location_array;
 }

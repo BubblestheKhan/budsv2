@@ -25,6 +25,9 @@ function requestProcessor($request) {
 		case "beer_search_all":
 			return $apiquery->beer_search_all($request['beer_all']);
 
+		case "location_search":
+			return $apiquery->location_search($request['location_search']);
+
 		case "login":
 			return $dbquery->login($request['username'], $request['password']);
 
