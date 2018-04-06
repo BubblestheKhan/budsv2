@@ -1,5 +1,11 @@
-<?php require('../template/header.html'); ?>
-<?php require('../template/footer.html'); ?>
+<?php 
+
+require('../template/header.html');
+require('../template/footer.html');
+
+session_start();
+
+?>
 
 <head>
 	<link href="../css/home.css" rel="stylesheet" type="text/css">
@@ -16,8 +22,8 @@
 			</div>
 			<div class="col-md-4 column2">
 				<div class="profile">
-					<h1><span id="username"><?php echo $username; ?></span></h1>
-					<span class="name"><?php echo $firstname . ' ' .$lastname; ?></span>
+					<h1><span id="username"><?php echo $_SESSION['username']; ?></span></h1>
+					<span class="name"><?php echo $_SESSION['firstname'] . ' ' .$_SESSION['lastname']; ?></span>
 
 					<!--Log Out-->
 					<form method="post" action="../controller/home.php">

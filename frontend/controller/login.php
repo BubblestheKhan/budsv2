@@ -16,7 +16,8 @@ $error = '';
 
 if (isset($_POST['register'])) {
 
-	header("Location: ../view/registration.view.php");
+	header("Location: registration.php");
+	exit();
 
 
 } elseif (isset($_POST['login'])) {
@@ -53,11 +54,13 @@ if (isset($_POST['register'])) {
 		$_SESSION['firstname'] = $response[0]['firstname'];
 		$_SESSION['lastname'] = $response[0]['lastname'];
 
-		header("Location: ../controller/home.php");
+		header("Location: home.php");
 		exit();
 
 	}
 }
+
+require('../view/login.view.php');
 
 
 ?>

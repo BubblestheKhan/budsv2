@@ -27,7 +27,7 @@ if (isset($_POST['register'])) {
 
 		}
 
-		header("Location: ../view/registration.view.php");
+		require("../view/registration.view.php");
 	
 	}  else {
 
@@ -41,15 +41,13 @@ if (isset($_POST['register'])) {
 
 		$response = $client->send_request($request);
 
-		header("Location: ../view/login.view.php");
+		header("Location: login.php");
 		exit();
 		
 	}
 } 
-	
 
-
-
+require("../view/registration.view.php");
 
 ?>
 

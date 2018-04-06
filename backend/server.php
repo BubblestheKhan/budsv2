@@ -20,6 +20,7 @@ function requestProcessor($request) {
 	switch ($request['type']) {
 
 		case "beerSearchAll":
+			var_dump($request['beerSearchAll']);
 			return $apiquery->beerSearchAll($request['beerSearchAll']);
 
 		case "login":

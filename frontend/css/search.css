@@ -1,0 +1,49 @@
+body {
+	background-color: #e6fff2;
+}
+
+#title a {
+	text-decoration: none;
+	color: #006600;
+}
+
+#title a:hover {
+	color: #00FF00;
+}
+
+.btn:hover {
+	color: #000000;
+	background-color: #ffffff;
+}
+
+
+.column1, .column2 {
+	border: 1px solid black;
+	background-color: #ffffff;
+	padding: 20px 20px;
+
+}
+
+#title {
+	color: #006600;
+
+}
+
+.information {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.venue_information {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.subtitle {
+	color: #A0A0A0;
+
+}
+
+#errorSearch {
+	font-family: 'Open Sans', sans-serif;
+
+}
