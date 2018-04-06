@@ -15,22 +15,22 @@ $_SESSION['beer'] = htmlspecialchars($_GET['beer']);
 $_SESSION['venue'] = htmlspecialchars($_GET['venue']);
 
 
-if (isset($_SESSION['search']) || !empty($_SESSION['beer'])) {
+if (!empty($_SESSION['venue'])) {
 
 	$request = array();
-	$request['type'] = 'beerSearchAll';
-	$request['beerSearchAll'] = $_SESSION['search'];
+	$request['type'] = 'venueSearchAll';
+	$request['venueSearchAll'] = $_SESSION['venue'];
 	$request['message'] = '{$username} searched for {$search}';
 
 	$response = $client->send_request($request);
 
 	require('../view/search.view.php');
 
-} elseif (!empty($_SESSION['venue'])) {
+} elseif (isset($_SESSION['search']) || !empty($_SESSION['beer'])) {
 
 	$request = array();
-	$request['type'] = 'venueSearchAll';
-	$request['venueSearchAll'] = $_SESSION['venue'];
+	$request['type'] = 'beerSearchAll';
+	$request['beerSearchAll'] = $_SESSION['search'];
 	$request['message'] = '{$username} searched for {$search}';
 
 	$response = $client->send_request($request);
