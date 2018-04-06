@@ -13,20 +13,20 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 
-		case "beerSearch":
-			return beerSearch($request['beerSearch']);
+		case "beer_search_name":
+			return beer_search_name($request['beer_name']);
 
-		case "beerSearchAll":
-			return beerSearchAll($request['beerSearchAll']);
+		case "beer_search_all":
+			return beer_search_all($request['beer_all']);
 
 		case "locationSearch":
 			return locationSearch($request['locationSearch']);
 
-		case "venueSearch":
-			return venueSearch($request['venueSearch']);
+		case "venue_search_id":
+			return venue_search_name($request['venue_id']);
 
-		case "venueSearchAll":
-			return venueSearchAll($request['venueSearchAll']);
+		case "venue_search_all":
+			return venue_search_all($request['venue_all']);
 
 	}
 
@@ -92,7 +92,7 @@ function locationSearch($apiLocationSearch) {
 	return $location_array;
 }
 
-function beerSearch($apiBeerSearch) {
+function beer_search_name($apiBeerSearch) {
 
 	$beer_info = $apiBeerSearch;
 	$curl = curl_init();
@@ -168,7 +168,7 @@ function beerSearch($apiBeerSearch) {
 	return $result_array;
 }
 
-function beerSearchAll($apiSearch) {
+function beer_search_all($apiSearch) {
 
 	$beer_info = $apiSearch;
 
@@ -247,7 +247,7 @@ function beerSearchAll($apiSearch) {
 	return $api_test;
 }
 
-function venueSearch($apiSearch) {
+function venue_search_name($apiSearch) {
 
 	$venue_info = $apiSearch;
 
@@ -315,7 +315,7 @@ function venueSearch($apiSearch) {
 	return $api_array;
 }
 
-function venueSearchAll($apiSearch) {
+function venue_search_all($apiSearch) {
 
 	$venue_info = $apiSearch;
 

@@ -19,9 +19,11 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 
-		case "beerSearchAll":
-			var_dump($request['beerSearchAll']);
-			return $apiquery->beerSearchAll($request['beerSearchAll']);
+		case "beer_search_name":
+			return $apiquery->beer_search_name($request['beer_name']);
+
+		case "beer_search_all":
+			return $apiquery->beer_search_all($request['beer_all']);
 
 		case "login":
 			return $dbquery->login($request['username'], $request['password']);
@@ -30,11 +32,13 @@ function requestProcessor($request) {
 			return $dbquery->logout($request['username']);
 
 		case "register":
-
 			return $dbquery->register($request['username'], $request['password'], $request['firstname'], $request['lastname']);
 
-		case "venueSearchAll":
-			return $apiquery->venueSearchAll($request['venueSearchAll']);
+		case "venue_search_id":
+			return $apiquery->venue_search_id($request['venue_id']);
+
+		case "venue_search_all":
+			return $apiquery->venue_search_all($request['venue_all']);
 
 
 	}

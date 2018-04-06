@@ -31,7 +31,7 @@ require('../template/footer.html');
 		<div class="row">
 			<div class="col-md-12 column2">
 				<h2 class="search_title">Search Again Please?</h2>
-				<form class="form-group" method="post" action="profile.php">
+				<form class="form-group" method="post" action="../controller/home.php">
 					<input class="form-control form-control-lg" type="text" placeholder="What will you be searching for today?" name="search">
 				</form>
 			</div>
@@ -48,7 +48,7 @@ require('../template/footer.html');
 				<div class="row">
 					<div class="col-md-12 column2">
 						<h2 class="search_title">Search Again Please?</h2>
-						<form class="form-group" method="post" action="../controller/profile.php">
+						<form class="form-group" method="post" action="../controller/home.php">
 							<input class="form-control form-control-lg" type="text" placeholder="What will you be searching for today?" name="search">
 						</form>
 					</div>
@@ -57,7 +57,7 @@ require('../template/footer.html');
 				<?php foreach ($response as $information) : ?>
 					<div class="row">
 						<div class="col-md-6 column1">
-							<h2 id="title"><a href="beerSearch.php?name=<?php echo $information['name']; ?>"><?php echo $information['name']; ?></a></h2>
+							<h2 id="title"><a href="beer_search.php?beer_name=<?php echo $information['name']; ?>"><?php echo $information['name']; ?></a></h2>
 							<p class="information"><?php echo $information['category']; ?></p>
 						</div>
 						<div class="col-md-3 column2">
@@ -79,7 +79,7 @@ require('../template/footer.html');
 				<div class="row">
 					<div class="col-md-12 column2">
 						<h2 class="search_title">Search Again Please?</h2>
-						<form class="form-group" method="post" action="../controller/profile.php">
+						<form class="form-group" method="post" action="../controller/home.php">
 							<input class="form-control form-control-lg" type="text" placeholder="What will you be searching for today?" name="search">
 						</form>
 					</div>
@@ -88,7 +88,7 @@ require('../template/footer.html');
 				<?php foreach ($response as $information) : ?>
 					<div class="row">
 						<div class="col-md-8 column1">
-							<h2 id="title"><a href="venueSearch.php?id=<?php echo $information['id']; ?>"><?php echo $information['name']; ?></a></h2>
+							<h2 id="title"><a href="venue_search.php?venue_id=<?php echo $information['id']; ?>"><?php echo $information['name']; ?></a></h2>
 							<p class="venue_information"><?php echo $information['nickname']; ?></p>
 							<p class="venue_information"><?php echo $information['type']; ?></p>
 							<p class="venue_information"><?php echo $information['brand']; ?></p>

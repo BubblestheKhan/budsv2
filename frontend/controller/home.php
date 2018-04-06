@@ -6,6 +6,7 @@ require_once('../path.inc');
 require_once('../get_host_info.inc');
 require_once('../rabbitMQLib.inc');
 
+
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 $date = date("Y-m-d", time());
 
@@ -20,7 +21,7 @@ if (isset($_POST['logout'])) {
 	session_destroy();
 	
 	$request['type'] = 'logout';
-	$request['username'] = $_SESSION['username'];
+	$request['username'] = urlencode($_SESSION['username']);
 	$request['message'] = 'User has logged out';
 
 	$response = $client->send_request($request);

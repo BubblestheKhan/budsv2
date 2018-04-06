@@ -3,8 +3,6 @@
 require('../template/header.html');
 require('../template/footer.html');
 
-session_start();
-
 ?>
 
 <head>
