@@ -20,7 +20,7 @@ require_once("../template/footer.html");
 			</div>
 			<div class="row">
 				<div class="col-md-12 column2 user-search">
-					<form class="form-inline-lg" method="post" action="../controller/user-search.php">
+					<form class="form-inline-lg" method="post" action="../controller/home.php">
 						<input class="form-control form-control-lg" type="text" placeholder="Search for people" name="user-search">
 						<input class="btn btn-default my-5 my-md-4" type="submit" value="Search">
 					</form>
@@ -35,7 +35,7 @@ require_once("../template/footer.html");
 					<p id="lastname"><?php echo $value['lastname']; ?></p>
 					<form method="POST" action="../controller/friend_add.php">
 						<input type="hidden" name="user_id" value="<?php echo $value['id']; ?>">
-						<button type="submit" class="btn btn-outline-success" role="button" value="Add">Add</button>
+						<button type="submit" class="btn btn-outline-success" role="button" value="Add"><?php echo $status; ?></button>
 					</form>
 				</div>
 			</div>

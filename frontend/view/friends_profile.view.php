@@ -20,8 +20,8 @@ require('../template/footer.html');
 			</div>
 			<div class="col-md-4 column2">
 				<div class="profile">
-					<h1><span id="username"><?php echo $_SESSION['username']; ?></span></h1>
-					<span class="name"><?php echo $_SESSION['firstname'] . ' ' .$_SESSION['lastname']; ?></span>
+					<h1><span id="username"><?php echo $_SESSION['friends_username']; ?></span></h1>
+					<span class="name"><?php echo $_SESSION['friends_firstname'] . ' ' .$_SESSION['friends_lastname']; ?></span>
 
 					<!--Log Out-->
 					<form method="post" action="../controller/home.php">
@@ -30,7 +30,7 @@ require('../template/footer.html');
 				</div>
 			</div>
 		</div>
-		<?php if (empty(friends_show($_SESSION['id']))) : ?>
+		<?php if (empty(friends_show($_POST['friends_id']))) : ?>
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 friends-list">
 					<h2><span id="friends">Friends List</span></h2>
@@ -41,14 +41,11 @@ require('../template/footer.html');
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 friends-list">
 					<h2><span id="friends">Friends List</span></h2>
-					<?php foreach (friends_show($_SESSION['id']) as $friend => $name) : ?>			
+					<?php foreach (friends_show($_POST['friends_id']) as $friend => $name) : ?>				
 						<div class="row">
 							<div class="col-md-6 friends-name">
-								<form method="POST" action="../controller/friends_profile.php">
+								<form method="POST" action="../controller/home.php">
 									<input type="hidden" name="friends_id" value="<?php echo $name['id']; ?>">
-									<input type="hidden" name="friends_username" value="<?php echo $name['username']; ?>">
-									<input type="hidden" name="friends_firstname" value="<?php echo $name['firstname']; ?>">
-									<input type="hidden" name="friends_lastname" value="<?php echo $name['lastname']; ?>">
 									<button type="submit" class="btn btn-outline-success" role="button" value="friends_name"><?php echo $name['username']; ?></button>
 								</form>
 							</div>

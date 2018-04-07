@@ -3,7 +3,7 @@
 session_start();
 
 require_once("../rabbitmq_required.php");
-require_once("friends_show.php");
+require_once("friends_functions.php");
 
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 
@@ -42,8 +42,6 @@ if (!empty($_SESSION['user_search'])) {
 	exit();
 
 }
-
-
 
 require("../view/home.view.php");
 

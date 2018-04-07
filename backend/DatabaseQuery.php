@@ -115,48 +115,43 @@ class DatabaseQuery {
 		}
 	}
 
-
-	public function user_response($response) {
-
-		$statement = $this->pdo->prepare("UPDATE friend_request SET status = '{$response}'");
-		$statement->execute();
-
-	}
-
-	public function user_request($user_from, $user_to) {
-
-		$statement = $this->pdo->prepare("INSERT INTO friend_request (user_from, user_to, status) VALUES (:user_from, :user_to, 'pending')");
-
-		$statement->bindParam(":user_from", $user_from);
-		$statement->bindParam(":user_to", $user_to);
-
-		$statement->execute();
-		
-	}
-
 	public function friend_add($user_from, $user_to) {
 
-		$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
-
-		$statement->bindParam(":user_id", $user_from);
-		$statement->bindParam(":friend_id", $user_to);
+		$statement = $this->pdo->prepare("SELECT user_id, friend_id FROM friends_list WHERE user_id = '{$user_from}' AND user_friend = '{$user_to}'");
 		$statement->execute();
+		$result = $statement->fetchAll();
 
-		$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+		if (!empty($result)) {
+			$log = "{$this->date}, {$this->time}: User '{$user_to}', already exists! '{$user_from}'";
+			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
-		$statement->bindParam(":user_id", $user_to);
-		$statement->bindParam(":friend_id", $user_from);
-		$statement->execute();
+		} else {
+
+			$log = "{$this->date}, {$this->time}: User '{$user_from}' has successfully added '{$user_to}'";
+			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+			$statement->bindParam(":user_id", $user_from);
+			$statement->bindParam(":friend_id", $user_to);
+			$statement->execute();
+
+			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+			$statement->bindParam(":user_id", $user_to);
+			$statement->bindParam(":friend_id", $user_from);
+			$statement->execute();
+
+		}
 
 	}
 
 	public function friends_show($user_id) {
 
-		$statement = $this->pdo->prepare("SELECT u.id, u.username FROM users u INNER JOIN friends_list f ON f.friend_id = u.id WHERE f.user_id = '{$user_id}'");
+		$statement = $this->pdo->prepare("SELECT u.id, u.username, u.firstname, u.lastname FROM users u INNER JOIN friends_list f ON f.friend_id = u.id WHERE f.user_id = '{$user_id}'");
 		$statement->execute();
 		$result = $statement->fetchAll();
 
-		var_dump($result);
 		return $result;
 	}
 
@@ -167,10 +162,51 @@ class DatabaseQuery {
 
 		$result = $statement->fetchAll();
 
-		var_dump($result);
 		return $result;
 
 	}
+
+	public function beer_show($user_id) {
+
+		$statement = $this->pdo->prepare("SELECT beer_name FROM users u INNER JOIN beer_list b ON b.user_id = u.id WHERE b.user_id = '{$user_id}'");
+		$statement->execute();
+		$result = $statement->fetchAll();
+
+		return $result;
+	}
+
+	public function beer_favorite($user_id, $beer_name) {
+
+		$statement = $this->pdo->prepare("SELECT user_id, friend_id FROM friends_list WHERE user_id = '{$user_from}' AND user_friend = '{$user_to}'");
+		$statement->execute();
+		$result = $statement->fetchAll();
+
+		if (!empty($result)) {
+			$log = "{$this->date}, {$this->time}: User '{$user_to}', already exists! '{$user_from}'";
+			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+		} else {
+
+			$log = "{$this->date}, {$this->time}: User '{$user_from}' has successfully added '{$user_to}'";
+			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+			$statement->bindParam(":user_id", $user_from);
+			$statement->bindParam(":friend_id", $user_to);
+			$statement->execute();
+
+			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+			$statement->bindParam(":user_id", $user_to);
+			$statement->bindParam(":friend_id", $user_from);
+			$statement->execute();
+
+		}
+
+	}
+
+
 }
 
 ?>

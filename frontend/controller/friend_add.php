@@ -7,8 +7,6 @@ require_once('../rabbitmq_required.php');
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 
 $_SESSION['user_id'] = htmlspecialchars($_POST['user_id']);
-var_dump($_SESSION['user_id']);
-var_dump($_SESSION['id']);
 
 if (!empty($_SESSION['user_id'])) {
 
@@ -22,7 +20,6 @@ if (!empty($_SESSION['user_id'])) {
 
 	header("Location: home.php");
 	exit();
-
 }
 
 ?>

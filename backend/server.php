@@ -34,6 +34,12 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 
+		case "beer_favorite":
+			return $dbquery->beer_show($request['user_id'], $request['beer_name']);
+
+		case "beer_show":
+			return $dbquery->beer_show($request['user_id']);
+
 		case "beer_search_name":
 			return $apiquery->beer_search_name($request['beer_name']);
 

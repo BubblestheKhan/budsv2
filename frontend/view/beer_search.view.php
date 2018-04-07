@@ -12,11 +12,12 @@ require('../template/footer.html');
 				<p class="information"><?php echo $response['category']; ?></p>
 			
 			<!--<button type="button">Favorite <a onclick="favBeer('.$itemId.')" > </a></button> -->
-				<a href="../controller/beerFavorite.php?beername=<?php echo $response['name'] ?>" class="favorite_button">Favorite</a>
+				<form method="POST" action="../controller/friend_add.php">
+					<input type="hidden" name="beer_id" value="<?php echo $value['id']; ?>">
+					<button type="submit" class="btn btn-outline-success" role="button" value="Add"><?php echo $status; ?></button>
+				</form>
 
 			</div>
-
-			<script language="javascript">RateMe("001");</script>
 
 			<div class="col-md-4 column2">
 				<p class="information"><span class="subtitle">ABV: </span><?php echo $response['abv']; ?></p>
