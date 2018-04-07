@@ -2,15 +2,13 @@
 
 session_start();
 
-require_once('../path.inc');
-require_once('../get_host_info.inc');
-require_once('../rabbitMQLib.inc');
-
+require_once("../rabbitmq_required.php");
+require_once("add_user.php");
 
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
-$date = date("Y-m-d", time());
 
 $_SESSION['search'] = htmlspecialchars($_POST['search']);
+$_SESSION['user_search'] = htmlspecialchars($_POST['user_search']);
 
 if (!isset($_SESSION['username'])) {
 	header("Location: login.php");
@@ -37,6 +35,15 @@ if (!empty($_SESSION['search'])){
 	exit();
 
 }
+
+if (!empty($_SESSION['user_search'])) {
+
+	header("Location: user_search.php");
+	exit();
+
+}
+
+
 
 require("../view/home.view.php");
 

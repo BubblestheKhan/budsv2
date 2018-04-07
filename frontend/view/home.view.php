@@ -53,8 +53,8 @@ require('../template/footer.html');
 		<?php endif; ?>
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 user-search">
-					<form class="form-group" method="post" action="../controller/user-search.php">
-						<input class="form-control form-control-lg" type="text" placeholder="Search for people" name="user-search">
+					<form class="form-group" method="post" action="../controller/home.php">
+						<input class="form-control form-control-lg" type="text" placeholder="Search for people" name="user_search">
 						<input class="btn btn-default my-2 my-sm-2" type="submit" value="Search">
 					</form>
 				</div>

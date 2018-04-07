@@ -1,8 +1,6 @@
 <?php
 
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
+require_once("rabbitmq_required.php");
 
 function requestProcessor($request) {
 	echo "Request received".PHP_EOL;

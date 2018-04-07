@@ -1,8 +1,6 @@
 <?php
 
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
+require_once("rabbitmq_required.php");
 
 class APIQuery {
 
@@ -34,10 +32,7 @@ class APIQuery {
 
 	public function beer_search_name($search) {
 
-		$date = date("Y-m-d");
-		$time = date("h:m:sa");
-
-		$log = "{$date}, {$time}: Searching the beer from the API.";
+		$log = "{$this->date}, {$this->time}: Searching the beer from the API.";
 		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
 		$client = new rabbitMQClient("testRabbitMQ.ini", "Backend");
@@ -57,10 +52,7 @@ class APIQuery {
 
 	public function location_search($search) {
 
-		$date = date("Y-m-d");
-		$time = date("h:m:sa");
-
-		$log = "{$date}, {$time}: Searching for the address from the API.";
+		$log = "{$this->date}, {$this->time}: Searching for the address from the API.";
 
 		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
@@ -81,10 +73,7 @@ class APIQuery {
 
 	public function venue_search_all($search) {
 
-		$date = date("Y-m-d");
-		$time = date("h:m:sa");
-
-		$log = "{$date}, {$time}: Searching venues from the API...";
+		$log = "{$this->date}, {$this->time}: Searching venues from the API...";
 		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
 		$client = new rabbitMQClient("testRabbitMQ.ini", "Backend");
@@ -103,10 +92,7 @@ class APIQuery {
 
 	public function venue_search_id($search) {
 
-		$date = date("Y-m-d");
-		$time = date("h:m:sa");
-
-		$log = "{$date}, {$time}: Searching the beer from the API.";
+		$log = "{$this->date}, {$this->time}: Searching the beer from the API.";
 		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
 		$client = new rabbitMQClient("testRabbitMQ.ini", "Backend");
@@ -120,7 +106,6 @@ class APIQuery {
 
 		var_dump($api_request);
 		return $api_request;
-
 
 	}
 }

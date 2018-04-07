@@ -1,21 +1,35 @@
 <?php
 
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-include('DatabaseQuery.php');
-include('APIQuery.php');
+require_once("rabbitmq_required.php");
+require_once('DatabaseQuery.php');
+require_once('APIQuery.php');
 
 function requestProcessor($request) {
 	echo "Request received".PHP_EOL;
 	$config = require('config.php');
+
+	$date = date('Y-m-d');
+	$time = date('h:m:sa');
 
 	if(!isset($request['type'])) {
 		return "Error: unsupported message type";
 	}
 
 	$apiquery = new APIQuery(); // Call the API class to query from the API
-	$dbquery = new DatabaseQuery(Connection::connect($config['database'])); // Call the Database class to query from the DATABASE
+
+	try {
+
+		$dbquery = new DatabaseQuery(Connection::connect($config['database'])); // Call the Database class to query from the DATABASE
+
+		$log = "{$date}, {$time}: Successfully connected to the database.";
+		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+	} catch (PDOException $e){
+
+		$log = "{$date}, {$time}: Failed to connect to the database.";
+		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+	}
 
 	switch ($request['type']) {
 
@@ -36,6 +50,9 @@ function requestProcessor($request) {
 
 		case "register":
 			return $dbquery->register($request['username'], $request['password'], $request['firstname'], $request['lastname']);
+
+		case "user_search":
+			return $dbquery->user_search($request['user_search']);
 
 		case "venue_search_id":
 			return $apiquery->venue_search_id($request['venue_id']);
