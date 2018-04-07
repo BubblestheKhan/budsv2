@@ -117,7 +117,7 @@ class DatabaseQuery {
 
 	public function user_search($user_search) {
 
-		$statement = $this->pdo->prepare("SELECT id, username, firstname, lastname FROM users where username = '{$user_search}'");
+		$statement = $this->pdo->prepare("SELECT id, username, firstname, lastname FROM users where username = '{$user_search}' || firstname = {'$user_search'}");
 		$statement->execute();
 
 		$result = $statement->fetchAll();
