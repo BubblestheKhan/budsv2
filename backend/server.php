@@ -3,6 +3,7 @@
 require_once("rabbitmq_required.php");
 require_once('DatabaseQuery.php');
 require_once('APIQuery.php');
+$config = require('config.php');
 
 function requestProcessor($request) {
 	echo "Request received".PHP_EOL;
@@ -39,6 +40,9 @@ function requestProcessor($request) {
 		case "beer_search_all":
 			return $apiquery->beer_search_all($request['beer_all']);
 
+		case "friends_show";
+			return $dbquery->friends_show($request['friends_show']);
+
 		case "location_search":
 			return $apiquery->location_search($request['location_search']);
 
@@ -51,8 +55,8 @@ function requestProcessor($request) {
 		case "register":
 			return $dbquery->register($request['username'], $request['password'], $request['firstname'], $request['lastname']);
 
-		case "user_add":
-			return $dbquery->user_add($request['id'], $request['user_id'], $request['status']);
+		case "friend_add":
+			return $dbquery->friend_add($request['id'], $request['user_id']);
 
 		case "user_search":
 			return $dbquery->user_search($request['user_search']);

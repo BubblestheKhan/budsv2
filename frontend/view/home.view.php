@@ -30,7 +30,7 @@ require('../template/footer.html');
 				</div>
 			</div>
 		</div>
-		<?php if (empty($response)) : ?>
+		<?php if (empty($friends_show)) : ?>
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 friends-list">
 					<h2><span id="friends">Friends List</span></h2>
@@ -41,10 +41,10 @@ require('../template/footer.html');
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 friends-list">
 					<h2><span id="friends">Friends List</span></h2>
-					<?php foreach ($response as $friend => $name) : ?>				
+					<?php foreach ($friends_show as $friend => $name) : ?>				
 						<div class="row">
 							<div class="col-md-6 friends-name">
-								<a href="../controller/friends-profile.php?friendsname=<?php echo $name['friendsname']; ?>&friendsFirstName=<?php echo $name['firstname']; ?>&friendsLastName=<?php echo $name['lastname']; ?>" class="name"><?php echo $name['friendsname']; ?></a>
+								<?php echo $name['username']; ?>
 							</div>
 						</div>
 					<?php endforeach; ?>

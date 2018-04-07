@@ -115,17 +115,49 @@ class DatabaseQuery {
 		}
 	}
 
-	public function user_add($user_from, $user_to, $status) {
-		var_dump($user_to);
 
-		$statement = $this->pdo->prepare("INSERT INTO friends_request (user_from, user_to, status) VALUES (:user_from, :user_to, :status)");
+	public function user_response($response) {
+
+		$statement = $this->pdo->prepare("UPDATE friend_request SET status = '{$response}'");
+		$statement->execute();
+
+	}
+
+	public function user_request($user_from, $user_to) {
+
+		$statement = $this->pdo->prepare("INSERT INTO friend_request (user_from, user_to, status) VALUES (:user_from, :user_to, 'pending')");
 
 		$statement->bindParam(":user_from", $user_from);
 		$statement->bindParam(":user_to", $user_to);
-		$statement->bindParam(":status", $status);
 
 		$statement->execute();
 		
+	}
+
+	public function friend_add($user_from, $user_to) {
+
+		$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+		$statement->bindParam(":user_id", $user_from);
+		$statement->bindParam(":friend_id", $user_to);
+		$statement->execute();
+
+		$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+
+		$statement->bindParam(":user_id", $user_to);
+		$statement->bindParam(":friend_id", $user_from);
+		$statement->execute();
+
+	}
+
+	public function friends_show($user_id) {
+
+		$statement = $this->pdo->prepare("SELECT u.id, u.username FROM users u INNER JOIN friends_list f ON f.friend_id = u.id WHERE f.user_id = '{$user_id}'");
+		$statement->execute();
+		$result = $statement->fetchAll();
+
+		var_dump($result);
+		return $result;
 	}
 
 	public function user_search($user_search) {
