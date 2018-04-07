@@ -51,6 +51,9 @@ function requestProcessor($request) {
 		case "register":
 			return $dbquery->register($request['username'], $request['password'], $request['firstname'], $request['lastname']);
 
+		case "user_add":
+			return $dbquery->user_add($request['id'], $request['user_id'], $request['status']);
+
 		case "user_search":
 			return $dbquery->user_search($request['user_search']);
 

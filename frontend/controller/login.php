@@ -48,6 +48,7 @@ if (isset($_POST['register'])) {
 
 	} else {
 
+		$_SESSION['id'] = $response[0]['id'];
 		$_SESSION['username'] = $response[0]['username'];
 		$_SESSION['firstname'] = $response[0]['firstname'];
 		$_SESSION['lastname'] = $response[0]['lastname'];

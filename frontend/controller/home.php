@@ -3,7 +3,6 @@
 session_start();
 
 require_once("../rabbitmq_required.php");
-require_once("add_user.php");
 
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 

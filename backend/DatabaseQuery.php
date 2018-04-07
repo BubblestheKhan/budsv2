@@ -30,7 +30,7 @@ class DatabaseQuery {
 				$log = "{$this->date}, {$this->time}: Response Code {$code}: Username {$username} Authorized!";
 				file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
-				$response = $this->pdo->prepare("SELECT username, firstname, lastname FROM users WHERE username = '{$username}'");
+				$response = $this->pdo->prepare("SELECT id, username, firstname, lastname FROM users WHERE username = '{$username}'");
 				$response->execute();
 
 				$result = $response->fetchAll();
@@ -115,9 +115,22 @@ class DatabaseQuery {
 		}
 	}
 
+	public function user_add($user_from, $user_to, $status) {
+		var_dump($user_to);
+
+		$statement = $this->pdo->prepare("INSERT INTO friends_request (user_from, user_to, status) VALUES (:user_from, :user_to, :status)");
+
+		$statement->bindParam(":user_from", $user_from);
+		$statement->bindParam(":user_to", $user_to);
+		$statement->bindParam(":status", $status);
+
+		$statement->execute();
+		
+	}
+
 	public function user_search($user_search) {
 
-		$statement = $this->pdo->prepare("SELECT id, username, firstname, lastname FROM users where username = '{$user_search}' || firstname = {'$user_search'}");
+		$statement = $this->pdo->prepare("SELECT id, username, firstname, lastname FROM users WHERE username = '{$user_search}' OR firstname = '{$user_search}'");
 		$statement->execute();
 
 		$result = $statement->fetchAll();
