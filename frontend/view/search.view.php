@@ -12,13 +12,15 @@ require('../template/footer.html');
 <div class="container main-content">
 	<div class="row">
 		<div class="col-md-4 beer_brewery_search">
-			<form class="form-group" method="post" action="../controller/search.php">
-				<a href="search.php?beer=<?php echo $_SESSION['search']; ?>" type="submit" class="btn btn-secondary btn-lg btn-block">Beer</a>
+			<form class="form-group" method="POST" action="../controller/search.php">
+				<input type="hidden" name="beer_search" value="<?php echo $_SESSION['beer_name']; ?>">
+				<button type="submit" class="btn btn-secondary btn-lg btn-block" role="button" value="beer_name">Beer</button>
 			</form>
 		</div>
 		<div class="col-md-4 beer_brewery_search">
-			<form class="form-group" action="../controller/search.php">
-				<a href="search.php?venue=<?php echo $_SESSION['search']; ?>"  type="submit" class="btn btn-secondary btn-lg btn-block">Venue</a>
+			<form class="form-group" method="POST" action="../controller/search.php">
+				<input type="hidden" name="venue_search" value="<?php echo $_SESSION['beer_name']; ?>">
+				<button type="submit" class="btn btn-secondary btn-lg btn-block" role="button" value="beer_name">Venue</button>
 			</form>
 		</div>
 	</div>

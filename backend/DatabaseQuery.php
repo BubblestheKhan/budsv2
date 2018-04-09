@@ -177,29 +177,23 @@ class DatabaseQuery {
 
 	public function beer_favorite($user_id, $beer_name) {
 
-		$statement = $this->pdo->prepare("SELECT user_id, friend_id FROM friends_list WHERE user_id = '{$user_from}' AND user_friend = '{$user_to}'");
+		$statement = $this->pdo->prepare("SELECT user_id, beer_name FROM beer_list WHERE user_id = '{$user_id}' AND beer_name = '{$beer_name}'");
 		$statement->execute();
 		$result = $statement->fetchAll();
 
 		if (!empty($result)) {
-			$log = "{$this->date}, {$this->time}: User '{$user_to}', already exists! '{$user_from}'";
+			$log = "{$this->date}, {$this->time}: Beer '{$beer_name}', already exists!'";
 			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
 		} else {
 
-			$log = "{$this->date}, {$this->time}: User '{$user_from}' has successfully added '{$user_to}'";
+			$log = "{$this->date}, {$this->time}: User '{$user_id}' has successfully added '{$beer_name}'";
 			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
-			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
+			$statement = $this->pdo->prepare("INSERT INTO beer_list (user_id, beer_name) VALUES (:user_id, :beer_name)");
 
 			$statement->bindParam(":user_id", $user_from);
-			$statement->bindParam(":friend_id", $user_to);
-			$statement->execute();
-
-			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
-
-			$statement->bindParam(":user_id", $user_to);
-			$statement->bindParam(":friend_id", $user_from);
+			$statement->bindParam(":beer_name", $beer_name);
 			$statement->execute();
 
 		}

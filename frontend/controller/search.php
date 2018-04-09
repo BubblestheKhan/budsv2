@@ -9,22 +9,32 @@ $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 $date = date("Y-m-d");
 $time = date("h:m:sa");
 
-$_SESSION['beer'] = htmlspecialchars($_GET['beer']);
-$_SESSION['venue'] = htmlspecialchars($_GET['venue']);
-
+$_SESSION['beer'] = htmlspecialchars($_POST['beer_search']);
+$_SESSION['venue'] = htmlspecialchars($_POST['venue_search']);
 
 if (!empty($_SESSION['venue'])) {
 
 	$request = array();
 	$request['type'] = 'venue_search_all';
-	$request['venue_all'] = urlencode($_SESSION['venue']);
+	$request['venue_all'] = urlencode($_SESSION['beer_name']);
 	$request['message'] = '{$username} searched for {$search}';
 
 	$response = $client->send_request($request);
 
 	require('../view/search.view.php');
 
-} elseif (isset($_SESSION['search']) || !empty($_SESSION['beer'])) {
+} elseif (!empty($_SESSION['beer_name'])) {
+
+	$request = array();
+	$request['type'] = 'beer_search_all';
+	$request['beer_all'] = urlencode($_SESSION['beer_name']);
+	$request['message'] = '{$username} searched for {$search}';
+
+	$response = $client->send_request($request);
+
+	require("../view/search.view.php");
+
+} elseif (!empty($_SESSION['search'])) {
 
 	$request = array();
 	$request['type'] = 'beer_search_all';
@@ -34,11 +44,6 @@ if (!empty($_SESSION['venue'])) {
 	$response = $client->send_request($request);
 
 	require('../view/search.view.php');
-
-} else {
-
-	require("../view/search.view.php");
-
 }
 
 ?>
