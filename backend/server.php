@@ -34,8 +34,8 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 
-		case "beer_favorite":
-			return $dbquery->beer_show($request['user_id'], $request['beer_name']);
+		case "beer_add":
+			return $dbquery->beer_add($request['id'], $request['beer_name']);
 
 		case "beer_show":
 			return $dbquery->beer_show($request['user_id']);

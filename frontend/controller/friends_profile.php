@@ -3,6 +3,8 @@
 session_start();
 
 require_once("../rabbitmq_required.php");
+require_once("friends_functions.php");
+require_once("beer_show.php");
 
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 

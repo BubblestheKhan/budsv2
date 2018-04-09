@@ -62,7 +62,7 @@ require('../template/footer.html');
 					</form>
 				</div>
 			</div>
-		<?php if (empty($favorite_response)) : ?>
+		<?php if (empty(beer_show($_SESSION['friends_id']))) : ?>
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 favorite-list">
 					<h2><span id="favorite">Favorite List</span></h2>			
@@ -73,8 +73,11 @@ require('../template/footer.html');
 			<div class="row justify-content-md-end">
 				<div class="col-md-4 column2 favorite-list">
 					<h2><span id="favorite">Favorite List</span></h2>
-					<?php foreach ($favorite_response as $beers => $name) : ?>	
-						<a href="../controller/search.php?beer_search=<?php echo $name['beer']; ?>&venue_search=<?php echo $name['beer']; ?>" class="beername"><?php echo $name['beer']; ?></a>
+					<?php foreach (beer_show($_SESSION['friends_id']) as $beers => $name) : ?>	
+						<form method="POST" action="../controller/home.php">
+							<input type="hidden" name="beer_name" value="<?php echo $name['beer_name']; ?>">
+							<button type="submit" class="btn btn-outline-success" role="button"><?php echo $name['beer_name']; ?></button>
+						</form>
 					<?php endforeach; ?>
 				</div>
 			</div>

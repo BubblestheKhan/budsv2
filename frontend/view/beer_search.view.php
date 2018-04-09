@@ -12,9 +12,9 @@ require('../template/footer.html');
 				<p class="information"><?php echo $response['category']; ?></p>
 			
 			<!--<button type="button">Favorite <a onclick="favBeer('.$itemId.')" > </a></button> -->
-				<form method="POST" action="../controller/friend_add.php">
-					<input type="hidden" name="beer_id" value="<?php echo $value['id']; ?>">
-					<button type="submit" class="btn btn-outline-success" role="button" value="Add"><?php echo $status; ?></button>
+				<form method="POST" action="../controller/beer_add.php">
+					<input type="hidden" name="beer_name" value="<?php echo $_SESSION['beer']; ?>">
+					<button type="submit" class="btn btn-outline-success" role="button">Add</button>
 				</form>
 
 			</div>
