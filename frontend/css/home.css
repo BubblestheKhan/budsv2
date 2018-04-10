@@ -5,6 +5,10 @@ body, html {
 	background-color: #e6fff2;
 }
 
+form {
+	margin: 0;
+}
+
 .container {
 	padding: 0;
 }
@@ -66,7 +70,7 @@ body, html {
 
 .friends-list .name {
 	text-decoration: none;
-	padding: 10px;
+	padding: 5px;
 }
 
 .friends-list .friends-name {
@@ -77,6 +81,10 @@ body, html {
 	border: 2px solid #00FF00;
 	color: #00FF00;
 
+}
+
+.favorite-list .btn {
+	margin: 5px;
 }
 
 .column1 .favorite_button:hover {

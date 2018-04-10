@@ -5,10 +5,6 @@ require('../template/footer.html');
 
 ?>
 
-<head>
-	<link href="../css/home.css" rel="stylesheet" type="text/css">
-</head> 
-
 <div class="container">
 	<div class="main-content">
 		<div class="row">
@@ -45,10 +41,10 @@ require('../template/footer.html');
 						<div class="row">
 							<div class="col-md-6 friends-name">
 								<form method="POST" action="../controller/friends_profile.php">
-									<input type="hidden" name="friends_id" value="<?php echo $name['id']; ?>">
-									<input type="hidden" name="friends_username" value="<?php echo $name['username']; ?>">
-									<input type="hidden" name="friends_firstname" value="<?php echo $name['firstname']; ?>">
-									<input type="hidden" name="friends_lastname" value="<?php echo $name['lastname']; ?>">
+									<input type="hidden"  class="name" name="friends_id" value="<?php echo $name['id']; ?>">
+									<input type="hidden" class="name" name="friends_username" value="<?php echo $name['username']; ?>">
+									<input type="hidden" class="name" name="friends_firstname" value="<?php echo $name['firstname']; ?>">
+									<input type="hidden" class="name" name="friends_lastname" value="<?php echo $name['lastname']; ?>">
 									<button type="submit" class="btn btn-outline-success" role="button" value="friends_name"><?php echo $name['username']; ?></button>
 								</form>
 							</div>
@@ -78,7 +74,7 @@ require('../template/footer.html');
 					<h2><span id="favorite">Favorite List</span></h2>
 					<?php foreach (beer_show($_SESSION['id']) as $beers => $name) : ?>	
 						<form method="POST" action="../controller/home.php">
-							<input type="hidden" name="beer_name" value="<?php echo $name['beer_name']; ?>">
+							<input type="hidden"  name="beer_name" value="<?php echo $name['beer_name']; ?>">
 							<button type="submit" class="btn btn-outline-success" role="button"><?php echo $name['beer_name']; ?></button>
 						</form>
 					<?php endforeach; ?>

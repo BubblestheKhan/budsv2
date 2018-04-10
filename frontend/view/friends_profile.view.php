@@ -5,10 +5,6 @@ require('../template/footer.html');
 
 ?>
 
-<head>
-	<link href="../css/home.css" rel="stylesheet" type="text/css">
-</head> 
-
 <div class="container">
 	<div class="main-content">
 		<div class="row">
@@ -44,8 +40,11 @@ require('../template/footer.html');
 					<?php foreach (friends_show($_POST['friends_id']) as $friend => $name) : ?>				
 						<div class="row">
 							<div class="col-md-6 friends-name">
-								<form method="POST" action="../controller/home.php">
-									<input type="hidden" name="friends_id" value="<?php echo $name['id']; ?>">
+								<form method="POST" action="../controller/friends_profile.php">
+									<input type="hidden" class="name" name="friends_id" value="<?php echo $name['id']; ?>">
+									<input type="hidden" class="name" name="friends_username" value="<?php echo $name['username']; ?>">
+									<input type="hidden" class="name" name="friends_firstname" value="<?php echo $name['firstname']; ?>">
+									<input type="hidden" class="name" name="friends_lastname" value="<?php echo $name['lastname']; ?>">
 									<button type="submit" class="btn btn-outline-success" role="button" value="friends_name"><?php echo $name['username']; ?></button>
 								</form>
 							</div>
