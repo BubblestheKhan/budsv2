@@ -8,13 +8,25 @@ require('../template/footer.html');
 	<div class="container main-content">
 		<div class="row">
 			<div class="col-md-8 column1">
+				<div class="average_rate">
+					<?php foreach ($rate_average as $key => $average) : ?>
+						<p><?php echo round($average["AVG(rate)"], 1); ?></p>
+					<?php endforeach; ?>
+				</div>
 				<h2 id="title"><?php echo $response['name']; ?></h2>
 				<p class="information"><?php echo $response['category']; ?></p>
-			
-			<!--<button type="button">Favorite <a onclick="favBeer('.$itemId.')" > </a></button> -->
+		
 				<form method="POST" action="../controller/beer_add.php">
 					<input type="hidden" name="beer_name" value="<?php echo $_SESSION['beer']; ?>">
-					<button type="submit" class="btn btn-outline-success" role="button">Add</button>
+					<button type="submit" class="favorite btn btn-outline-success" role="button">Favorite</button>
+				</form>
+
+				<form  class="rate" method="POST" action="../controller/beer_rate.php">
+					<button type="submit" name="rate" class="btn btn-success" role="button" value="1">1</button>
+					<button type="submit" name="rate" class="btn btn-success" role="button" value="2">2</button>
+					<button type="submit" name="rate" class="btn btn-success" role="button" value="3">3</button>
+					<button type="submit" name="rate" class="btn btn-success" role="button" value="4">4</button>
+					<button type="submit" name="rate" class="btn btn-success" role="button" value="5">5</button>
 				</form>
 
 			</div>
@@ -26,7 +38,7 @@ require('../template/footer.html');
 		</div>
 		<div class="row">
 			<div class="col-md-12 column1">
-				<p><?php echo $response['description']; ?></p>
+				<p class="description"><?php echo $response['description']; ?></p>
 			</div>
 		</div>
 	</div>

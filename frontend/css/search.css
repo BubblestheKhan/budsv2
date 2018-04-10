@@ -24,12 +24,22 @@ body {
 
 }
 
+.favorite {
+	float: right;
+}
+
 #title {
 	color: #006600;
 
 }
 
 .information {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.description {
+	font-size: 20px;
 	font-family: 'Open Sans', sans-serif;
 
 }
@@ -46,4 +56,20 @@ body {
 #errorSearch {
 	font-family: 'Open Sans', sans-serif;
 
+}
+
+.rate {
+	margin-top: 10px;
+}
+
+.average_rate {
+	color: #006600;
+	float: right;
+	border-radius: 50%;
+	padding: 5px;
+	border: 1px solid #006600;
+	width: 75px;
+	height: 75px;
+	text-align: center;
+	font-size: 40px;
 }

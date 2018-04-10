@@ -37,6 +37,12 @@ function requestProcessor($request) {
 		case "beer_add":
 			return $dbquery->beer_add($request['id'], $request['beer_name']);
 
+		case "beer_rate":
+			return $dbquery->beer_rate($request['user_id'], $request['beer_name'], $request['rate']);
+
+		case "beer_rate_average":
+			return $dbquery->beer_rate_average($request['beer_name']);
+
 		case "beer_show":
 			return $dbquery->beer_show($request['user_id']);
 
