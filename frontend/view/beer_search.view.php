@@ -22,6 +22,7 @@ require('../template/footer.html');
 				</form>
 
 				<form  class="rate" method="POST" action="../controller/beer_rate.php">
+					<p id="rate_title">Rate this beer: </p>
 					<button type="submit" name="rate" class="btn btn-success" role="button" value="1">1</button>
 					<button type="submit" name="rate" class="btn btn-success" role="button" value="2">2</button>
 					<button type="submit" name="rate" class="btn btn-success" role="button" value="3">3</button>
