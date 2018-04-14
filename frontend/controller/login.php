@@ -28,7 +28,7 @@ if (isset($_POST['register'])) {
 	$request['message'] = "'{$username}' requests to login '{$date}'";
 	
 	$response = $client->send_request($request);
-	
+
 	if ($response === '401') {
 
 		$error = "Oops! Invalid Username/Password";
@@ -60,6 +60,5 @@ if (isset($_POST['register'])) {
 }
 
 require('../view/login.view.php');
-
 
 ?>

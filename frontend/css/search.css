@@ -28,6 +28,10 @@ body {
 	float: right;
 }
 
+.favorite_list {
+	padding: 10px;
+}
+
 #title {
 	color: #006600;
 

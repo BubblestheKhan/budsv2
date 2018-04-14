@@ -49,6 +49,9 @@ function requestProcessor($request) {
 		case "beer_rate_average":
 			return $dbquery->beer_rate_average($request['beer_name']);
 
+		case "beer_remove":
+			return $dbquery->beer_remove($request['id'], $request['beer_name']);
+
 		case "beer_show":
 			return $dbquery->beer_show($request['user_id']);
 

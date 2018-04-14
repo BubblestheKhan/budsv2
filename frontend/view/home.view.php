@@ -78,12 +78,25 @@ require('../template/footer.html');
 				<div class="row">
 					<div class="col-md-12 favorite_list">
 						<h2><span id="favorite">Favorite List</span></h2>
-						<?php foreach (beer_show($_SESSION['id']) as $beers => $name) : ?>	
-							<form method="POST" action="../controller/home.php">
-								<input type="hidden"  name="beer_name" value="<?php echo $name['beer_name']; ?>">
-								<button type="submit" class="btn btn-outline-success" role="button"><?php echo $name['beer_name']; ?></button>
-							</form>
-						<?php endforeach; ?>
+						<div class="row">
+							<div class="col-md-6">
+							<?php foreach (beer_show($_SESSION['id']) as $beers => $name) : ?>	
+								<form method="POST" action="../controller/home.php">
+									<input type="hidden"  name="beer_name" value="<?php echo $name['beer_name']; ?>">
+									<button type="submit" class="btn btn-outline-success beer_name" role="button"><?php echo $name['beer_name']; ?></button>
+								</form>
+							<?php endforeach; ?>
+							</div>
+							<div class="col-md-6">
+							<?php foreach (beer_show($_SESSION['id']) as $beers => $name) : ?>	
+								<form method="POST" action="../controller/beer_remove.php">
+									<input type="hidden"  name="beer_remove" value="<?php echo $name['beer_name']; ?>">
+									<input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
+									<button type="submit" class="btn btn-outline-danger beer_name" role="button">Delete</button>
+								</form>
+							<?php endforeach; ?>
+							</div>
+						</div>
 					</div>
 				</div>
 				<?php endif; ?>

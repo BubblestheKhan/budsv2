@@ -129,6 +129,13 @@ class DatabaseQuery {
 
 	}
 
+	public function beer_remove($id, $beer_name) {
+
+		$statement = $this->pdo->prepare("DELETE FROM beer_list WHERE user_id = '{$id}' AND beer_name = '{$beer_name}'");
+		$statement->execute();
+
+	}
+
 	public function beer_show($user_id) {
 
 		$statement = $this->pdo->prepare("SELECT beer_name FROM users u INNER JOIN beer_list b ON b.user_id = u.id WHERE b.user_id = '{$user_id}'");
