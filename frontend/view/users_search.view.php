@@ -35,6 +35,7 @@ require_once("../template/footer.html");
 					<p id="lastname"><?php echo $value['lastname']; ?></p>
 					<form method="POST" action="../controller/friend_add.php">
 						<input type="hidden" name="user_id" value="<?php echo $value['id']; ?>">
+						<input type="hidden" name="friends_first" value="<?php echo $value['firstname']; ?>">
 						<button type="submit" class="btn btn-outline-success" role="button" value="Add"><?php echo $status; ?></button>
 					</form>
 				</div>

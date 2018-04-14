@@ -2,6 +2,7 @@
 
 require('../template/header.html');
 require('../template/footer.html'); 
+var_dump($_SESSION['firstname']);
 
 ?>
 
@@ -10,7 +11,11 @@ require('../template/footer.html');
 			<div class="col-md-8 column1">
 				<div class="average_rate">
 					<?php foreach ($rate_average as $key => $average) : ?>
-						<p><?php echo round($average["AVG(rate)"], 1); ?></p>
+						<?php if (empty($rate_average)): ?>
+							<p>0</p>
+						<?php else: ?>
+							<p><?php echo round($average["AVG(rate)"], 1); ?></p>
+						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
 				<h2 id="title"><?php echo $response['name']; ?></h2>

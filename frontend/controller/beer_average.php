@@ -6,7 +6,7 @@ require_once("../rabbitmq_required.php");
 
 $client = new rabbitMQClient("../testRabbitMQ.ini", "Frontend");
 
-$_SESSION['beer'] = htmlspecialchars($_GET['beer_name']);
+$_SESSION['beer'] = str_replace("'", "\'", htmlspecialchars($_GET['beer_name']));
 
 $request = array();
 $request['type'] = 'beer_rate_average';

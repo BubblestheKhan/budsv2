@@ -34,11 +34,17 @@ function requestProcessor($request) {
 
 	switch ($request['type']) {
 
-		case "beer_add":
-			return $dbquery->beer_add($request['id'], $request['beer_name']);
+		case "activity_add":
+			return $dbquery->activity_add($request['firstname'], $request['activity'], $request['object']);
+
+		case "activity_show":
+			return $dbquery->activity_show();
+
+		case "beer_favorite":
+			return $dbquery->beer_favorite($request['id'], $request['beer_name'], $request['firstname']);
 
 		case "beer_rate":
-			return $dbquery->beer_rate($request['user_id'], $request['beer_name'], $request['rate']);
+			return $dbquery->beer_rate($request['user_id'], $request['firstname'], $request['beer_name'], $request['rate']);
 
 		case "beer_rate_average":
 			return $dbquery->beer_rate_average($request['beer_name']);
@@ -51,6 +57,9 @@ function requestProcessor($request) {
 
 		case "beer_search_all":
 			return $apiquery->beer_search_all($request['beer_all']);
+
+		case "friend_add":
+			return $dbquery->friend_add($request['id'], $request['firstname'], $request['user_id'], $request['friends_name']);
 
 		case "friends_show";
 			return $dbquery->friends_show($request['friends_show']);
@@ -66,9 +75,6 @@ function requestProcessor($request) {
 
 		case "register":
 			return $dbquery->register($request['username'], $request['password'], $request['firstname'], $request['lastname']);
-
-		case "friend_add":
-			return $dbquery->friend_add($request['id'], $request['user_id']);
 
 		case "user_search":
 			return $dbquery->user_search($request['user_search']);

@@ -45,6 +45,11 @@ form {
 	color: #006600;
 }
 
+#activity_title {
+	color: #006600;
+	border-bottom: 1px solid black;
+}
+
 .main-content {
 	margin-top: 20px;
 }
@@ -114,10 +119,13 @@ form {
 	border: 1px solid black;
 }
 
-.column1 {
-	padding: 20px;
+
+.friends_list, .favorite_list, .user_search {
+	margin: 10px;
+	margin-left: 0px;
+	padding: 10px;
 }
 
-.column2 {
-	padding: 20px;
+.friends_list, .user_search {
+	border-bottom: 1px solid black;
 }

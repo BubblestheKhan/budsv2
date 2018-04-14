@@ -14,6 +14,28 @@ class DatabaseQuery {
 
 	}
 
+	public function activity_add($firstname, $activity, $object) {
+
+		$statement = $this->pdo->prepare("INSERT INTO activity_news (user_name, activity, object) VALUES (:user_name, :activity, :object)");
+		
+		$statement->bindParam(":user_name", $firstname);
+		$statement->bindParam(":activity", $activity);
+		$statement->bindParam(":object", $object);
+		$statement->execute();
+
+
+	}
+
+	public function activity_show() {
+
+		$statement = $this->pdo->prepare("SELECT user_name, activity, object FROM activity_news");
+		$statement->execute();
+
+		$result = $statement->fetchAll();
+
+		return $result;
+	}
+
 	public function beer_add($user_id, $beer_name) {
 
 		$statement = $this->pdo->prepare("SELECT user_id, beer_name FROM beer_list WHERE user_id = '{$user_id}' AND beer_name = '{$beer_name}'");
@@ -39,7 +61,9 @@ class DatabaseQuery {
 
 	}
 
-	public function beer_favorite($user_id, $beer_name) {
+	public function beer_favorite($user_id, $beer_name, $firstname) {
+
+		$activity = " has favorited ";
 
 		$statement = $this->pdo->prepare("SELECT user_id, beer_name FROM beer_list WHERE user_id = '{$user_id}' AND beer_name = '{$beer_name}'");
 		$statement->execute();
@@ -60,17 +84,36 @@ class DatabaseQuery {
 			$statement->bindParam(":beer_name", $beer_name);
 			$statement->execute();
 
+			$statement = $this->pdo->prepare("INSERT INTO activity_news (user_name, activity, object) VALUES (:user_name, :activity, :object)");
+		
+			$statement->bindParam(":user_name", $firstname);
+			$statement->bindParam(":activity", $activity);
+			$statement->bindParam(":object", $beer_name);
+			$statement->execute();
+
 		}
 
 	}
 
-	public function beer_rate($user_id, $beer_name, $rate) {
+	public function beer_rate($user_id, $firstname, $beer_name, $rate) {
+
+		$activity = " has rated '{$rate}' for ";
+
+		$log = "{$this->date}, {$this->time}: User '{$user_id}' has given '{$rate}' to '{$beer_name}'";
+		file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
 		$statement = $this->pdo->prepare("INSERT INTO rating (user_id, beer_name, rate) VALUES (:user_id, :beer_name, :rate)");
 
 		$statement->bindParam(":user_id", $user_id);
 		$statement->bindParam(":beer_name", $beer_name);
 		$statement->bindParam(":rate", $rate);
+		$statement->execute();
+
+		$statement = $this->pdo->prepare("INSERT INTO activity_news (user_name, activity, object) VALUES (:user_name, :activity, :object)");
+		
+		$statement->bindParam(":user_name", $firstname);
+		$statement->bindParam(":activity", $activity);
+		$statement->bindParam(":object", $beer_name);
 		$statement->execute();
 
 	}
@@ -95,9 +138,9 @@ class DatabaseQuery {
 		return $result;
 	}
 
-	public function friend_add($user_from, $user_to) {
+	public function friend_add($user_from, $firstname, $user_to, $friends_name) {
 
-		$statement = $this->pdo->prepare("SELECT user_id, friend_id FROM friends_list WHERE user_id = '{$user_from}' AND user_friend = '{$user_to}'");
+		$statement = $this->pdo->prepare("SELECT user_id, friend_id FROM friends_list WHERE user_id = '{$user_from}' AND friend_id = '{$user_to}'");
 		$statement->execute();
 		$result = $statement->fetchAll();
 
@@ -105,10 +148,17 @@ class DatabaseQuery {
 			$log = "{$this->date}, {$this->time}: User '{$user_to}', already exists!";
 			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
 
+
+			$code = "302";
+
+			return $code;
+
 		} else {
 
 			$log = "{$this->date}, {$this->time}: User '{$user_from}' has successfully added '{$user_to}'";
 			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+			$activity = " has become friends with ";
 
 			$statement = $this->pdo->prepare("INSERT INTO friends_list (user_id, friend_id) VALUES (:user_id, :friend_id)");
 
@@ -121,6 +171,18 @@ class DatabaseQuery {
 			$statement->bindParam(":user_id", $user_to);
 			$statement->bindParam(":friend_id", $user_from);
 			$statement->execute();
+
+			$code = "201";
+			$log = "{$this->date}, {$this->time}: Response Code '{$code}': Friend $user_to successfully added to the database.";
+			file_put_contents("log.txt", $log.PHP_EOL, FILE_APPEND | LOCK_EX);
+
+			$statement = $this->pdo->prepare("INSERT INTO activity_news (user_name, activity, object) VALUES (:user_name, :activity, :object)");
+			
+			$statement->bindParam(":user_name", $firstname);
+			$statement->bindParam(":activity", $activity);
+			$statement->bindParam(":object", $friends_name);
+			$statement->execute();
+
 
 		}
 
