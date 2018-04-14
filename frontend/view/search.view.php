@@ -94,9 +94,7 @@ require('../template/footer.html');
 							<p class="venue_information"><?php echo $information['nickname']; ?></p>
 							<p class="venue_information"><?php echo $information['type']; ?></p>
 							<p class="venue_information"><?php echo $information['brand']; ?></p>
-							<p class="venue_information">
-								<?php echo $location['state']; ?>
-							</p>
+							<p class="venue_information"><?php echo $information['state']; ?></p>
 							<p class="venue_information"><?php echo $information['town']; ?>
 							<p class="venue_information"><?php echo $information['address']; ?>
 							</p>
